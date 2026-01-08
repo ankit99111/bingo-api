@@ -10,10 +10,13 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: true, // Dynamically allow the requesting origin
+        origin: (origin, callback) => {
+            // Allow all origins to resolve CORS during deployment
+            callback(null, true);
+        },
         methods: ["GET", "POST"],
-        credentials: true,
-        allowedHeaders: ["*"]
+        allowedHeaders: ["*"],
+        credentials: true
     }
 });
 
