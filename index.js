@@ -7,6 +7,18 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 app.use(cors());
 
+// Manual CORS fallback for API Gateways
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, test-key, ngrok-skip-browser-warning");
+    res.header("Access-Control-Allow-Credentials", "true");
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
