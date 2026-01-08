@@ -212,7 +212,7 @@ setInterval(() => {
     });
 }, 60 * 1000); // Check every minute
 
-const PORT = process.env.PORT || 3301; // Avoid 3000 conflicts mostly
+const PORT = process.env.PORT || 8080; // Avoid 3000 conflicts mostly
 server.listen(PORT, () => {
     console.log(`SERVER RUNNING ON PORT ${PORT}`);
 });
