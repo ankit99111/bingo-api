@@ -28,7 +28,7 @@ const io = new Server(server, {
         },
         methods: ["GET", "POST"],
         allowedHeaders: ["*"],
-        credentials: true
+        //credentials: true
     }
 });
 
@@ -231,3 +231,4 @@ const PORT = process.env.PORT || 8080; // Avoid 3000 conflicts mostly
 server.listen(PORT, () => {
     console.log(`SERVER RUNNING ON PORT ${PORT}`);
 });
+
